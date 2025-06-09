@@ -1,8 +1,5 @@
 from ftransect import *
-import shutil
 import warnings
-from openpyxl import *
-from openpyxl.utils.dataframe import dataframe_to_rows
 
 warnings.filterwarnings('ignore')
 
@@ -15,7 +12,7 @@ wb, ws, path_survey = open_field_survey_data(site_name)
 # Generate Thalweg elevation
 Thalweg_Z = ThalZ_profile(site_name, True)
 
-# Generate XYZ coordinate of surveyed data
+# Generate XYZ coordinate of auto-level survey data
 # 1. Transform XYZ by assuming asymmetric channel (X-Y)
 Contours_XYZ, HT, HT_all, TR = trans_XY_contours(site_name, 'Asym')
 
