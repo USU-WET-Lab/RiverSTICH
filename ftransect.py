@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import openpyxl
 import matplotlib
+import simpledbf
 import matplotlib.pyplot as plt
 from scipy import interpolate
 from scipy import stats
@@ -10,14 +11,14 @@ from scipy import stats
 # matplotlib.use('TkAgg')
 
 def open_field_survey_data(site_name):
-    dir_survey = os.path.join(os.curdir, 'survey')
-    transect_file = os.path.join(dir_survey, site_name + '.xlsx')
+    path_survey = os.path.join(os.curdir, 'survey', site_name)
+    transect_file = os.path.join(path_survey, site_name + '.xlsx')
 
     wb = openpyxl.Workbook()
     wb = openpyxl.load_workbook(transect_file, data_only=True)
     ws = wb['Sheet1']
 
-    return wb, ws, dir_survey
+    return wb, ws, path_survey
 
 def calculate_att_table(cts):
 
@@ -56,7 +57,7 @@ def ThalZ_profile(site_name, plot):
     print('#######################################')
     print('# Calculating a thalweg profile ...')
 
-    wb, ws, dir_survey = open_field_survey_data(site_name)
+    wb, ws, path_survey = open_field_survey_data(site_name)
     TN, SL, BS, HI, HT, xdist_ThalZ = [], [], [], [], [], []
     SL_0_flag = 0
     SL_1_flag = 0
@@ -196,7 +197,7 @@ def trans_XY_contours(site_name, sym):
     print('#######################################')
     print('# Calculating the L/R water edges and bankfull contours ...')
     print('# ' + sym + ' channel')
-    wb, ws, dir_survey = open_field_survey_data(site_name)
+    wb, ws, path_survey = open_field_survey_data(site_name)
     HT, HT_all, xdist_cont, TR = [], [], [], []
 
     xs_num = 8
@@ -339,9 +340,166 @@ def trans_XY_contours(site_name, sym):
 
     return Contours_XYZ, HT, HT_all, TR
 
+def XYZ_topo_to_contours(site_name, x_cutoff,
+                         wse_point, flow_condition, y_flipped):
 
+    XS_plot = 1
+    XS_plot_save = 1
+    XS_plot_check = 0
+    # y_flipped = 1
+    # x_cutoff = 100
+
+    wsedbf = simpledbf.Dbf5(wse_point)
+    wsedf = wsedbf.to_dataframe()
+    wsedbf.f.close()
+
+    wsedf = wsedf[wsedf['RASTERVALU'] > 0]
+    wsedf = wsedf.dropna()
+
+    # # XS_txt_file = open(XS_txt_path,"r")
+    # # XS_txt = XS_txt_file.read()
+    # XS_txt = pd.read_csv(XS_txt_path, sep=';', header=0, names=["ind", "x", "y", "z"])
+    # xdist = XS_txt['x'].unique()
+    wsedf = wsedf[wsedf['x'] >= x_cutoff]
+    wsedf['x'] = wsedf['x'] - x_cutoff
+    xdist = wsedf['x'].unique()
+    ydist = wsedf['y'].unique()
+
+    x_res = xdist[1]-xdist[0]
+    y_res = ydist[1] - ydist[0]
+
+    L_BF1, ThalY1, R_BF1, BFZ1, ThalZ = [], [], [], [], []
+
+    for xx in xdist:
+
+        XS_yz_orig = wsedf[wsedf['x'] == xx]
+        XS_yz_orig = XS_yz_orig.rename(columns={"Field1": "ind"})
+        XS_yz_orig = XS_yz_orig.rename(columns={"RASTERVALU": "wse"})
+        # plt.plot(XS_yz['y'], XS_yz['z'])
+
+        ## making left and right walls
+        df_left = pd.DataFrame([[min(XS_yz_orig['ind']) - 1, xx, min(XS_yz_orig['y']) - y_res,
+                                 max(XS_yz_orig['wse'] + 1), XS_yz_orig['wse'][min(XS_yz_orig.index)]]],
+                               columns=["ind", "x", "y", "z", "wse"])
+        df_right = pd.DataFrame([[max(XS_yz_orig['ind']) + 1, xx, max(XS_yz_orig['y']) + y_res,
+                                  max(XS_yz_orig['wse'] + 1), XS_yz_orig['wse'][max(XS_yz_orig.index)]]],
+                                columns=["ind", "x", "y", "z", "wse"])
+
+        XS_yz = pd.concat([df_left, XS_yz_orig, df_right])
+        XS_yz['ind'] = XS_yz['ind'] + 1
+        XS_yz = XS_yz.set_index(XS_yz['ind'])
+        XS_yz = XS_yz.sort_values('y', ascending=True)
+
+        if y_flipped == 1:
+            XS_yz['y'] = XS_yz['y'].sort_values(ascending=False).values
+            XS_yz = XS_yz.sort_values('y', ascending=True)
+
+        Thalx = xx
+        Thalz = min(XS_yz['z'])
+        ind_Thal = XS_yz[XS_yz['z'] == Thalz]['ind']
+        Thaly = XS_yz['y'][ind_Thal]
+
+        if len(Thaly) == 1:
+            ind_Thal = ind_Thal.values[0]
+
+        else:  # multiple thalweg Y
+            middleInd = int(np.round(np.mean(Thaly.index), 0))
+            ind_Thal = ind_Thal[middleInd]
+            Thaly = Thaly[middleInd]
+
+        # ind_Thal = ind_Thal.values[0]
+
+        # Find intersections
+        x = XS_yz['x']
+        y = XS_yz['y']
+        z = XS_yz['z']
+
+        water_stage = XS_yz['wse']
+
+        # Debugging
+        # plt.figure()
+        # plt.plot(y, z, y, water_stage)
+        # plt.pause(0.1)
+        # input('Press enter to continue ...')
+
+        z0 = z - water_stage
+
+        ind, ind_diff, ind_L, ind_R = [], [], [], []
+
+        for ii in range(min(XS_yz['ind']), max(XS_yz['ind'])):
+            if np.sign(z0[ii] * z0[ii + 1]) < 0 or z0[ii] == 0:
+                ind.append(ii)
+
+        ind_diff = ind - ind_Thal
+
+        if max(ind_diff) == 0:  # Right wall
+            ind_L = max(ind_diff[ind_diff < 0]) + ind_Thal
+            ind_R = min(ind_diff[ind_diff >= 0]) + ind_Thal
+        elif min(ind_diff) == 0:  # Left wall
+            ind_L = max(ind_diff[ind_diff <= 0]) + ind_Thal
+            ind_R = min(ind_diff[ind_diff > 0]) + ind_Thal
+        else:
+            ind_L = max(ind_diff[ind_diff < 0]) + ind_Thal
+            ind_R = min(ind_diff[ind_diff > 0]) + ind_Thal
+
+        # Find the L/R intersection
+        m1 = (z0[ind_L] - z0[ind_L + 1]) / (y[ind_L] - y[ind_L + 1])
+        yi1 = (-z0[ind_L] + m1 * y[ind_L]) / m1
+        zi1 = m1 * (yi1 - y[ind_L + 1]) + z[ind_L + 1]
+
+        m2 = (z0[ind_R] - z0[ind_R + 1]) / (y[ind_R] - y[ind_R + 1])
+        yi2 = (-z0[ind_R] + m2 * y[ind_R]) / m2
+        zi2 = m2 * (yi2 - y[ind_R + 1]) + z[ind_R + 1]
+
+        water_stage_LR = [zi1, zi2]
+
+        if XS_plot == 1:
+            plt.figure()
+            plt.plot(XS_yz['y'], XS_yz['z'], color='darkorange')
+            plt.plot(XS_yz_orig['y'], XS_yz_orig['z'], color='black')  # ,linestyle='dashed')
+            plt.plot(Thaly, Thalz, 'r*')
+            plt.plot([yi1, yi2], water_stage_LR, 'b*')
+            plt.plot(y, water_stage, 'b--')
+            # plt.xlim(left=x_cutoff)
+
+            if XS_plot_check == 1:
+                plt.pause(0.1)
+                input("Press Enter to continue...")
+
+            if XS_plot_save == 1:
+                path_output = os.path.abspath('./output/%s' % site_name)
+                path_XS = path_output + '/XS_'+ flow_condition
+                if not os.path.isdir(path_output):
+                    os.mkdir(path_output)
+                if not os.path.isdir(path_XS):
+                    os.mkdir(path_XS)
+                plt.savefig(path_XS + '/x_' + str(int(xx)) + '.png')
+
+            plt.close()
+
+        L_BF1 = np.append(L_BF1, yi1)
+        ThalY1 = np.append(ThalY1, Thaly)
+        R_BF1 = np.append(R_BF1, yi2)
+        BFZ1 = np.append(BFZ1, np.average(water_stage_LR))
+        ThalZ = np.append(ThalZ, Thalz)
+
+    # water_depth is not used in vv3 or ETH vv1
+    # contour_data = np.vstack((xdist, water_depth * np.ones(len(xdist)), L_BF1, ThalY1, R_BF1, BFZ1, ThalZ))
+    # Contours_XYZ = pd.DataFrame(data=contour_data.T,
+    #                             columns=['xdist', 'water_depth', 'L_BF1', 'ThalY1', 'R_BF1', 'BFZ1', 'ThalZ'])
+
+    ThalY1_y_offset = np.average(ThalY1)
+    ThalY1 = ThalY1 - ThalY1_y_offset
+    L_BF1 = L_BF1 - ThalY1_y_offset
+    R_BF1 = R_BF1 - ThalY1_y_offset
+
+    contour_data = np.vstack((xdist, L_BF1, ThalY1, R_BF1, BFZ1, ThalZ))
+    Contours_XYZ = pd.DataFrame(data=contour_data.T,
+                                columns=['xdist', 'L_BF1', 'ThalY1', 'R_BF1', 'BFZ1', 'ThalZ'])
+    #
+    return Contours_XYZ
 def lateral_slope_breaks(site_name, Contours_XYZ):
-    wb, ws, dir_survey = open_field_survey_data(site_name)
+    wb, ws, path_survey = open_field_survey_data(site_name)
 
     TN = np.arange(8)
     TS = ws['C14'].value * 15 / 7  # Transect spacing = bankfull width * 15/7
@@ -403,16 +561,26 @@ def check_any_str(column):
             answer = True
     return answer
 
-def generate_XZ_contours(Contours_XYZ, Thalweg_Z, site_name):
-    ## Changing column names ########################################################
-    Contours_XYZ.rename(columns={'xdist_cont': 'xdist'}, inplace=True)
-    # Contours_XYZ.rename(columns={'ThalZ1': 'ThalZ'}, inplace=True)
+def generate_XZ_contours(Contours_XYZ, site_name, survey_type, **kwargs):
 
+    Thalweg_Z = kwargs.get('Thalweg_Z', None)
 
-    ## Thalweg point generation
-    ## fill
-    x_fit = Thalweg_Z['xdist_ThalZ']
-    y_fit = Thalweg_Z['ThalZ']
+    path_output = os.path.abspath('./output/%s' % site_name)
+    if not os.path.isdir(path_output):
+        os.mkdir(path_output)
+
+    if not isinstance(Thalweg_Z, pd.DataFrame):
+        ## Thalweg point generation
+        x_fit = Contours_XYZ['xdist']
+        y_fit = Contours_XYZ['ThalZ']
+
+    else:
+        Contours_XYZ.rename(columns={'xdist_cont': 'xdist'}, inplace=True)
+        # Contours_XYZ.rename(columns={'ThalZ1': 'ThalZ'}, inplace=True)
+
+        ## Thalweg point generation
+        x_fit = Thalweg_Z['xdist_ThalZ']
+        y_fit = Thalweg_Z['ThalZ']
     func = interpolate.interp1d(x_fit, y_fit,
                                 bounds_error=False,
                                 kind='linear',
@@ -423,7 +591,9 @@ def generate_XZ_contours(Contours_XYZ, Thalweg_Z, site_name):
     ## Water depth, BFZ point generation ############################################
 
 
-    variables = ['water_depth', 'BFZ1']
+    # variables = ['water_depth', 'BFZ1']
+    variables = ['BFZ1']
+
     ## water depth, BFZ point generation
     for variable in variables:
         ## fill
@@ -434,24 +604,21 @@ def generate_XZ_contours(Contours_XYZ, Thalweg_Z, site_name):
                                     kind='linear',
                                     fill_value=(y_fit[[y_fit.index[0]]], y_fit[y_fit.index[-1]]))
         Contours_XYZ[variable] = func(Contours_XYZ['xdist']).astype('float64')
-    Contours_XYZ['ThalY']=0
-    Contours_XYZ['BFZ1'] = Contours_XYZ['ThalZ'].astype('float') + Contours_XYZ['BFZ1'].astype('float')
-
-
-
+    # Contours_XYZ['ThalY']=0
+    # Contours_XYZ['BFZ1'] = Contours_XYZ['ThalZ'].astype('float') + Contours_XYZ['BFZ1'].astype('float')
 
     ### Plotting the channel using the raw survey data (i.e., before its transformation)
+    if survey_type == 'autolevel':
+        plt.figure(figsize=(8, 4))
+        plt.suptitle('Before Transformation (X-Y)')
+        plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['L_BF1'].values, 'o', label='Flow Stage 1', color='royalblue')
+        plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['R_BF1'].values, 'o', color='royalblue')
+        plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['ThalY1'].values, 'o', label='Thalweg', color='k')
 
-    plt.figure(figsize=(8, 4))
-    plt.suptitle('Before Transformation (X-Y)')
-    plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['L_BF1'].values, 'o', label='Flow Stage 1', color='royalblue')
-    plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['R_BF1'].values, 'o', color='royalblue')
-    plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['ThalY1'].values, 'o', label='Thalweg', color='k')
-
-    plt.xlabel('Longitudinal distance (m)')
-    plt.ylabel('Lateral distance (m)')
-    # plt.legend(loc='upper right')
-    plt.savefig('./output/' +site_name + '_XY_before_transformation.png')
+        plt.xlabel('Longitudinal distance (m)')
+        plt.ylabel('Lateral distance (m)')
+        # plt.legend(loc='upper right')
+        plt.savefig(os.path.join(path_output, 'XY_before_transformation.png'))
 
 
     ### PART I ###
@@ -460,30 +627,33 @@ def generate_XZ_contours(Contours_XYZ, Thalweg_Z, site_name):
     ### not change, but the channel datum, which initially was the
     ### thalweg, does.
 
-    bf_width = Contours_XYZ['L_BF1'] + np.abs(Contours_XYZ['R_BF1'])
-    lateral_offset = -1 * (Contours_XYZ['L_BF1'] - (bf_width / 2))
+    if survey_type == 'autolevel':
+        bf_width = Contours_XYZ['L_BF1'] + np.abs(Contours_XYZ['R_BF1'])
+        lateral_offset = -1 * (Contours_XYZ['L_BF1'] - (bf_width / 2))
 
-    Contours_XYZ['L_BF1'] = bf_width / 2
-    Contours_XYZ['R_BF1'] = bf_width / 2 * -1
-    Contours_XYZ['ThalY1'] = lateral_offset
+        Contours_XYZ['L_BF1'] = bf_width / 2
+        Contours_XYZ['R_BF1'] = bf_width / 2 * -1
+        Contours_XYZ['ThalY1'] = lateral_offset
 
-    ## Label for plotting
-    label_LBF1 = 'Bankfull'
+        ## Label for plotting
+        # label_LBF1 = 'Bankfull'
 
-
-    ### Plotting the channel after it is transformed (i.e., symmetric
-    ### about its active channel bounds)
+        ### Plotting the channel after it is transformed (i.e., symmetric
+        ### about its active channel bounds)
+        fig_title = 'After Transformation (X-Y)'
+    else:
+        fig_title = 'Contours (X-Y)'
 
     plt.figure(figsize=(8, 4))
-    plt.suptitle('After Transformation (X-Y)')
-    plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['L_BF1'].values, 'o', label=label_LBF1, color='royalblue')
+    plt.suptitle(fig_title)
+    plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['L_BF1'].values, 'o', label='Contour', color='royalblue')
     plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['R_BF1'].values, 'o', color='royalblue')
     plt.plot(Contours_XYZ['xdist'].values, Contours_XYZ['ThalY1'].values, 'o', label='Thalweg', color='k')
 
     plt.xlabel('Longitudinal distance (m)')
     plt.ylabel('Lateral distance (m)')
     # plt.legend(loc='upper right')
-    plt.savefig('./output/' + site_name +'_XY.png')
+    plt.savefig(os.path.join(path_output, 'XY.png'))
 
     ################################################################################################################
 
@@ -597,6 +767,8 @@ def generate_XZ_contours(Contours_XYZ, Thalweg_Z, site_name):
 
 
 def generate_series(site_name, contours, interp_method):
+    path_output = os.path.abspath('./output/%s' % site_name)
+
     datum = 1000 # Reference Datum (usually 1000)
     spline_series = pd.DataFrame(index=np.arange(contours.iloc[-1].at['xdist']),
                                  columns=['station', 'thal_elev', 'thal_lat', 'l_contour',
@@ -726,7 +898,7 @@ def generate_series(site_name, contours, interp_method):
     ax2.locator_params(axis='y', nbins=4)
     # ax2.legend(loc='lower right')
 
-    plt.savefig('./output/'+site_name+'_XYZ_contours.png')
+    plt.savefig(os.path.join(path_output, 'XYZ_contours.png'))
 
     return spline_series
 
