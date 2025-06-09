@@ -766,7 +766,7 @@ def generate_XZ_contours(Contours_XYZ, site_name, survey_type, **kwargs):
     return Contours_XYZ, min_vertical_offset, method
 
 
-def generate_series(site_name, contours, interp_method):
+def generate_series(contours, site_name, interp_method):
     path_output = os.path.abspath('./output/%s' % site_name)
 
     datum = 1000 # Reference Datum (usually 1000)
@@ -902,3 +902,15 @@ def generate_series(site_name, contours, interp_method):
 
     return spline_series
 
+def write_GCS(Contours_series, site_name):
+    path_output = os.path.abspath('./output/%s' % site_name)
+    gcs_file = os.path.join(path_output, '%s_RB_metrics.xlsx' % site_name)
+
+    # Save the series to xlsx file
+    Contours_series.to_excel(gcs_file)
+
+    # Change the name of the sheet to 'GVFs'
+    tmp = openpyxl.load_workbook(gcs_file)
+    tmp_sheet = tmp['Sheet1']
+    tmp_sheet.title = 'GVFs'
+    tmp.save(gcs_file)

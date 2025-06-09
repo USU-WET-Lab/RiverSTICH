@@ -1,5 +1,7 @@
 from ftransect import *
+import shutil
 import warnings
+
 
 warnings.filterwarnings('ignore')
 
@@ -23,7 +25,10 @@ Contours, min_vertical_offset, method = generate_XZ_contours(
     Contours_XYZ, site_name, 'xyz_topo')
 
 # Generate series for thalweg elevation and contours
-Contours_series = generate_series(site_name, Contours, 'pchip' )
+Contours_series = generate_series(Contours, site_name, 'pchip')
+
+# Write a GCS file
+write_GCS(Contours_series, site_name)
 
 # Calculate channel attributes
 channel_att = calculate_att_table(Contours_series)
