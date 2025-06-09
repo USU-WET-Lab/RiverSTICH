@@ -41,13 +41,16 @@ Here, we present two examples using different types of XS survey data to demonst
 - Output
     - A plot of the HAND-based rating curve and the family of rating curves obtained from the benchmark dataset
 
+-->
+
+
 # <!-- ![output3](/codes/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png) -->
 
+<!---
 <p align="center" width="100%">
 <img width="50%" src="/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png" alt="output3">
 </p>
-
--->
+--.
 
 
 <!-- LICENSE -->
