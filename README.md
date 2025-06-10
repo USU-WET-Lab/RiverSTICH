@@ -28,9 +28,12 @@ Here, we present two examples using different types of XS survey data to demonst
 
 - Input
     - Field survey data sheet (/survey/SFE_Leggett/SFE_Leggett.xlsx)
-![Figure 1. Equal-space transect survey](/survey/SFE_Leggett/survey1.png)
-![Figure 2. Longitudinal profile](/survey/SFE_Leggett/survey2.png)
-![Figure 3. Additional riffle crests and pool troughs transect survey](/survey/SFE_Leggett/survey3.png)
+        - Equal-space transect survey
+![Figure 1.](/survey/SFE_Leggett/survey1.png)
+        - Longitudinal profile survey
+![Figure 2.](/survey/SFE_Leggett/survey2.png)
+        - Additional riffle crests and pool troughs transect survey
+![Figure 3.](/survey/SFE_Leggett/survey3.png)
 - Output
     - X-Y contour plot (before and after transformation, /output/SFE_Leggett/XY_before_transformation.png and XY.png)
 ![Figure 4. X-Y contour plot, before transformation](/output/SFE_Leggett/XY_before_transformation.png) 
