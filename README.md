@@ -24,17 +24,17 @@ RiverSTICH converts traditional transect-based survey data into descriptive reac
 
 Here, we present two examples using different types of XS survey data to demonstrate how RiverSTICH works.
 
-#### Example 1. Auto-level survey (main_SFE_Leggett.py)
+#### Example 1. Auto level survey (main_SFE_Leggett.py)
 
-- Input (in /survey/SFE_Leggett)
-    - Field survey data sheet (SFE_Leggett.xlsx)
+- Input (/survey/SFE_Leggett)
+    - Field survey data sheet (SFE_Leggett.xlsx, see [Survey_protocols.docx](/survey/SFE_Leggett/Survey_protocols.docx) for more information)
         - Equal-space transect survey
 ![Figure 1.](/survey/SFE_Leggett/survey1.png)
         - Longitudinal profile survey
 ![Figure 2.](/survey/SFE_Leggett/survey2.png)
         - Additional riffle crests and pool troughs transect survey
 ![Figure 3.](/survey/SFE_Leggett/survey3.png)
-- Output (in /output/SFE_Leggett)
+- Output (/output/SFE_Leggett)
     - X-Y contour plot (before and after transformation, XY_before_transformation.png and XY.png)
 ![Figure 4. X-Y contour plot, before transformation](/output/SFE_Leggett/XY_before_transformation.png) 
 ![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)
@@ -44,8 +44,20 @@ Here, we present two examples using different types of XS survey data to demonst
     - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
 
-# <!-- ![output3](/codes/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png) -->
+#### Example 2. X, Y, Z topographic survey (main_M1.py)
 
+- Input (/survey/M1)
+    - Field survey data sheet (SFE_Leggett.xlsx)
+        - Point shape file for topography (M1.shp), water surface elevation for baseflow (M1_base.shp) and peak flow (M1_peak.shp)
+![Figure 11.](/survey/M1/M1.png)
+- Output (/output/M1)
+    - X-Y contour plot (before and after transformation, XY.png)
+![Figure 12. X-Y contour plot](/output/M1/XY.png)
+    - X-Y and X-Z interpolated contour plot 
+![Figure 13. X-Y and X-Z interpolated contour plot](/output/M1/XYZ_contours.png)
+    - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
+    - Interpolated contour series (M1_RB_metrics.xlsx)
+        - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
 <!---
 <p align="center" width="100%">
 <img width="50%" src="/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png" alt="output3">
