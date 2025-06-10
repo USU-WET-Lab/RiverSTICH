@@ -49,12 +49,12 @@ Here, we present two examples using different types of XS survey data to demonst
 - Input (/survey/M1)
     - Field survey data sheet (SFE_Leggett.xlsx)
         - Point shape file for topography (M1.shp)
-<-- ![Figure 11.](/survey/M1/M1.png) -->
+<!-- ![Figure 11.](/survey/M1/M1.png) -->
 <p align="center" width="100%">
 <img width="80%" src="/survey/M1/M1.png" alt="input2">
 </p>
         - Point shape file water surface elevation for baseflow (M1_base.shp)
-<-- ![Figure 12.](/survey/M1/M1_base.png) -->
+<!-- ![Figure 12.](/survey/M1/M1_base.png) -->
 <p align="center" width="100%">
 <img width="80%" src="/survey/M1/M1_base.png" alt="input2">
 </p>
