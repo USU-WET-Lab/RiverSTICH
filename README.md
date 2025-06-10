@@ -81,7 +81,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Anzy Lee anzy.lee@usu.edu
 
-Project Link: [https://github.com/USU-CIROH/HAND-FIM_Assessment_public](https://github.com/USU-CIROH/HAND-FIM_Assessment_public)
+GitHub repository: [https://github.com/USU-WET-Lab/RiverSTICH](https://github.com/USU-WET-Lab/RiverSTICH)
 
 
 <!-- ACKNOWLEDGMENTS 
