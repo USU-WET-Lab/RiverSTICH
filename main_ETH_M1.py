@@ -7,7 +7,6 @@ warnings.filterwarnings('ignore')
 
 # Define name of the site
 site_name = 'M1'
-flow_condition = 'base'
 
 # Open field survey data
 survey_path = os.path.abspath('./survey/%s' % site_name)
@@ -32,4 +31,4 @@ write_GCS(Contours_series, site_name)
 
 # Calculate channel attributes
 channel_att = calculate_att_table(Contours_series)
-channel_att.to_excel('./output/%s/channel_attributes.xlsx' % site_name)
+channel_att.to_excel('./output/%s/channel_attributes.xlsx' % (site_name))

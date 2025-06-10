@@ -455,12 +455,13 @@ def XYZ_topo_to_contours(site_name, x_cutoff,
 
         if XS_plot == 1:
             plt.figure()
-            plt.plot(XS_yz['y'], XS_yz['z'], color='darkorange')
-            plt.plot(XS_yz_orig['y'], XS_yz_orig['z'], color='black')  # ,linestyle='dashed')
-            plt.plot(Thaly, Thalz, 'r*')
+            plt.plot(XS_yz['y'], XS_yz['z'], color='darkorange', label='XS profile')
+            # plt.plot(XS_yz_orig['y'], XS_yz_orig['z'], color='black')  # ,linestyle='dashed')
+            plt.plot(Thaly, Thalz, 'r*', label='Thlaweg')
             plt.plot([yi1, yi2], water_stage_LR, 'b*')
-            plt.plot(y, water_stage, 'b--')
+            plt.plot(y, water_stage, 'b--', label='Water Surface elevation')
             # plt.xlim(left=x_cutoff)
+            plt.legend()
 
             if XS_plot_check == 1:
                 plt.pause(0.1)
