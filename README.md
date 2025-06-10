@@ -48,13 +48,17 @@ Here, we present two examples using different types of XS survey data to demonst
 
 - Input (/survey/M1)
     - Field survey data sheet (SFE_Leggett.xlsx)
-        - Point shape file for topography (M1.shp), water surface elevation for baseflow (M1_base.shp) and peak flow (M1_peak.shp)
+        - Point shape file for topography (M1.shp), water surface elevation for baseflow (M1_base.shp)
 ![Figure 11.](/survey/M1/M1.png)
+![Figure 12.](/survey/M1/M1_base.png)
 - Output (/output/M1)
-    - X-Y contour plot (before and after transformation, XY.png)
-![Figure 12. X-Y contour plot](/output/M1/XY.png)
+    - X-Y contour plot (XY.png)
+![Figure 12.](/output/M1/XY.png)
     - X-Y and X-Z interpolated contour plot 
-![Figure 13. X-Y and X-Z interpolated contour plot](/output/M1/XYZ_contours.png)
+![Figure 13.](/output/M1/XYZ_contours.png)
+<p align="center" width="100%">
+<img width="50%" src="/output/M1/XYZ_contours.png" alt="output13">
+</p>
     - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
     - Interpolated contour series (M1_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
