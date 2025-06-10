@@ -24,7 +24,7 @@ RiverSTICH converts traditional transect-based survey data into descriptive reac
 
 Here, we present two examples using different types of XS survey data to demonstrate how RiverSTICH works.
 
-#### Example 1. Auto level survey (main_SFE_Leggett.py)
+#### Example 1. Auto level survey to RiverSTICH (main_SFE_Leggett.py)
 
 - Input (/survey/SFE_Leggett)
     - Field survey data sheet (SFE_Leggett.xlsx, see [Survey_protocols.docx](/survey/SFE_Leggett/Survey_protocols.docx) for more information)
@@ -44,7 +44,7 @@ Here, we present two examples using different types of XS survey data to demonst
     - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
 
-#### Example 2. X, Y, Z topographic survey (main_M1.py)
+#### Example 2. X, Y, Z topographic survey to RiverSTICH (main_M1.py)
 
 - Input (/survey/M1)
     - Field survey data sheet (SFE_Leggett.xlsx)
