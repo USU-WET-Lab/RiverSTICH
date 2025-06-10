@@ -58,20 +58,21 @@ Here, we present two examples using different types of XS survey data to demonst
             <p align="center" width="100%">
             <img width="60%" src="/output/SFE_Leggett/XYZ_contours.png" alt="output3">
             </p>
-    - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
+    - A channel attribute table of RiverSTICH channel, including reach-average bankfull depth, bed slope, and bankfull water surface elevation slope (channel_attributes.xlsx)
     - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
 
 #### Example 2. X, Y, Z topographic survey to RiverSTICH (main_M1.py)
 
 - Input (/survey/M1)
-    - Field survey data sheet (SFE_Leggett.xlsx)
+    - Field survey data 
         - Point shape file for topography (M1.shp)
             <!-- ![Figure 11.](/survey/M1/M1.png) -->
             <p align="center" width="100%">
             <img width="80%" src="/survey/M1/M1.png" alt="input2">
             </p>
         - Point shape file water surface elevation for baseflow (M1_base.shp)
+            - This could be obtained from 2d hydraulic model output, through flume experiments or surveying
             <!-- ![Figure 12.](/survey/M1/M1_base.png) -->
             <p align="center" width="100%">
             <img width="80%" src="/survey/M1/M1_base.png" alt="input2">
@@ -83,7 +84,7 @@ Here, we present two examples using different types of XS survey data to demonst
         <img width="60%" src="/output/M1/XS/x_0.png" alt="output1">
         </p>
     - X-Y contour plot (XY.png)
-        - Note that the transformation was not needed as the exact X, Y, Z coordinates were surveyed
+        - Note that the transformation was not needed as the exact X, Y, Z coordinates were provided as input
         <!--- ![Figure 14.](/output/M1/XY.png) -->
         <p align="center" width="100%">
         <img width="60%" src="/output/M1/XY.png" alt="output2">
@@ -93,7 +94,7 @@ Here, we present two examples using different types of XS survey data to demonst
         <p align="center" width="100%">
         <img width="60%" src="/output/M1/XYZ_contours.png" alt="output3">
         </p>
-    - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
+    - A channel attribute table of RiverSTICH channel, including reach-average bankfull depth, bed slope, and bankfull water surface elevation slope (channel_attributes.xlsx)
     - Interpolated contour series (M1_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
         
