@@ -80,7 +80,7 @@ Here, we present two examples using different types of XS survey data to demonst
     - Cross-section bed and water surface profile for width extraction
         <!--- ![Figure 13.](/output/M1/XS/x_0.png) -->
         <p align="center" width="100%">
-        <img width="60%" src="/survey/M1/M1_base.png" alt="output1">
+        <img width="60%" src="/output/M1/XS/x_0.png" alt="output1">
         </p>
     - X-Y contour plot (XY.png)
         - Note that the transformation was not needed as the exact X, Y, Z coordinates were surveyed
