@@ -26,22 +26,23 @@ Here, we present two examples using different types of XS survey data to demonst
 
 #### Example 1. Auto-level survey (main_SFE_Leggett.py)
 
-- Input
-    - Field survey data sheet (/survey/SFE_Leggett/SFE_Leggett.xlsx)
+- Input (in /survey/SFE_Leggett)
+    - Field survey data sheet (SFE_Leggett.xlsx)
         - Equal-space transect survey
 ![Figure 1.](/survey/SFE_Leggett/survey1.png)
         - Longitudinal profile survey
 ![Figure 2.](/survey/SFE_Leggett/survey2.png)
         - Additional riffle crests and pool troughs transect survey
 ![Figure 3.](/survey/SFE_Leggett/survey3.png)
-- Output
-    - X-Y contour plot (before and after transformation, /output/SFE_Leggett/XY_before_transformation.png and XY.png)
+- Output (in /output/SFE_Leggett)
+    - X-Y contour plot (before and after transformation, XY_before_transformation.png and XY.png)
 ![Figure 4. X-Y contour plot, before transformation](/output/SFE_Leggett/XY_before_transformation.png) 
 ![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)
     - X-Y and X-Z interpolated contour plot 
 ![Figure 6. X-Y and X-Z interpolated contour plot](/output/SFE_Leggett/XYZ_contours.png)
-    - A channel attribute table of RiverSTICH channel (/output/SFE_Leggett/channel_attributes.xlsx)
-    - Interpolated contour series, which will be used for RiverBuilder channel generation (/output/SFE_Leggett/SFE_Leggett_RB_metrics.xlsx)
+    - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
+    - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
+        - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
 
 # <!-- ![output3](/codes/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png) -->
 
