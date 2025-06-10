@@ -341,7 +341,7 @@ def trans_XY_contours(site_name, sym):
     return Contours_XYZ, HT, HT_all, TR
 
 def XYZ_topo_to_contours(site_name, x_cutoff,
-                         wse_point, flow_condition, y_flipped):
+                         wse_point, y_flipped):
 
     XS_plot = 1
     XS_plot_save = 1
@@ -469,7 +469,7 @@ def XYZ_topo_to_contours(site_name, x_cutoff,
 
             if XS_plot_save == 1:
                 path_output = os.path.abspath('./output/%s' % site_name)
-                path_XS = path_output + '/XS_'+ flow_condition
+                path_XS = path_output + '/XS'
                 if not os.path.isdir(path_output):
                     os.mkdir(path_output)
                 if not os.path.isdir(path_XS):

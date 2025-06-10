@@ -17,7 +17,9 @@ survey_wse_path = os.path.join(survey_path, 'M1_base.shp') # WSE from 2d model r
 wse_point = survey_wse_path.replace('shp', 'dbf')
 
 Contours_XYZ = XYZ_topo_to_contours(
-    site_name, 100, wse_point, 'base', 1)
+    site_name, 100, wse_point, 1)
+# Note: Points with x < x_cutoff was removed for erroneous WSE values
+# Note: y_flipped was set 1 as the y coordinate values were flipped
 
 # Generate XYZ coordinate of surveyed data with XYZ coordinate
 Contours, min_vertical_offset, method = generate_XZ_contours(
