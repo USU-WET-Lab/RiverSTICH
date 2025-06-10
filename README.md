@@ -49,19 +49,36 @@ Here, we present two examples using different types of XS survey data to demonst
 - Input (/survey/M1)
     - Field survey data sheet (SFE_Leggett.xlsx)
         - Point shape file for topography (M1.shp)
-![Figure 11.](/survey/M1/M1.png)
+<-- ![Figure 11.](/survey/M1/M1.png) -->
+<p align="center" width="100%">
+<img width="80%" src="/survey/M1/M1.png" alt="input2">
+</p>
         - Point shape file water surface elevation for baseflow (M1_base.shp)
-![Figure 12.](/survey/M1/M1_base.png)
+<-- ![Figure 12.](/survey/M1/M1_base.png) -->
+<p align="center" width="100%">
+<img width="80%" src="/survey/M1/M1_base.png" alt="input2">
+</p>
 - Output (/output/M1)
     - Cross-section bed and water surface profile for width extraction
-![Figure 13.](/output/M1/XS/x_0.png)
+<!--- ![Figure 13.](/output/M1/XS/x_0.png) -->
+<p align="center" width="100%">
+<img width="80%" src="/survey/M1/M1_base.png" alt="output1">
+</p>
     - X-Y contour plot (XY.png)
-![Figure 14.](/output/M1/XY.png)
-    - X-Y and X-Z interpolated contour plot 
-![Figure 15.](/output/M1/XYZ_contours.png)
+<!--- ![Figure 14.](/output/M1/XY.png) -->
+<p align="center" width="100%">
+<img width="80%" src="/output/M1/XY.png" alt="output2">
+</p>
+    - X-Y and X-Z interpolated contour plot
+<!--- ![Figure 15.](/output/M1/XYZ_contours.png)-->
+<p align="center" width="100%">
+<img width="80%" src="/output/M1/XYZ_contours.png" alt="output3">
+</p>
+
     - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
     - Interpolated contour series (M1_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
+        
 <!---
 <p align="center" width="100%">
 <img width="50%" src="/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png" alt="output3">
