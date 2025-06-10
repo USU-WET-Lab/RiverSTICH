@@ -24,25 +24,21 @@ RiverSTICH converts traditional transect-based survey data into descriptive reac
 
 Here, we present two examples using different types of XS survey data to demonstrate how RiverSTICH works.
 
-#### Example 1. main_SFE_Leggett.py
+#### Example 1. Auto-level survey (main_SFE_Leggett.py)
 
-
-<!---
 - Input
-    - Outputs from the first script (1.) 
-    - Topography used to run the 2D hydrodynamic model in raster format
-        - 1-m DEM with bathymetry
-    - Manning's n and channel slope 
-    - Cross-section lines (.shp)
-    - Thalweg points for each cross-section lines (.shp)
-    - For each flow condition,
-        - Water surface elevation (WSE) in raster format
-        - Downstream WSE and flow discharge 
+    - Field survey data sheet (/survey/SFE_Leggett/SFE_Leggett.xlsx)
+![Figure 1. Equal-space transect survey](/survey/SFE_Leggett/survey1.png)
+![Figure 2. Longitudinal profile](/survey/SFE_Leggett/survey2.png)
+![Figure 3. Additional riffle crests and pool troughs transect survey](/survey/SFE_Leggett/survey3.png)
 - Output
-    - A plot of the HAND-based rating curve and the family of rating curves obtained from the benchmark dataset
-
--->
-
+    - X-Y contour plot (before and after transformation, /output/SFE_Leggett/XY_before_transformation.png and XY.png)
+![Figure 4. X-Y contour plot, before transformation](/output/SFE_Leggett/XY_before_transformation.png) 
+![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)
+    - X-Y and X-Z interpolated contour plot 
+![Figure 6. X-Y and X-Z interpolated contour plot](/output/SFE_Leggett/XYZ_contours.png)
+    - A channel attribute table of RiverSTICH channel (/output/SFE_Leggett/channel_attributes.xlsx)
+    - Interpolated contour series, which will be used for RiverBuilder channel generation (/output/SFE_Leggett/SFE_Leggett_RB_metrics.xlsx)
 
 # <!-- ![output3](/codes/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png) -->
 
@@ -50,7 +46,7 @@ Here, we present two examples using different types of XS survey data to demonst
 <p align="center" width="100%">
 <img width="50%" src="/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png" alt="output3">
 </p>
---.
+-->
 
 
 <!-- LICENSE -->
