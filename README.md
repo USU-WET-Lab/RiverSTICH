@@ -29,36 +29,35 @@ Here, we present two examples using different types of XS survey data to demonst
 - Input (/survey/SFE_Leggett)
     - Field survey data sheet (SFE_Leggett.xlsx, see [Survey_protocols.docx](/survey/SFE_Leggett/Survey_protocols.docx) for more information)
         - Equal-space transect survey
-<!---![Figure 1.](/survey/SFE_Leggett/survey1.png)-->
-<p align="center" width="100%">
-<img width="80%" src="/survey/SFE_Leggett/survey1.png" alt="input1">
-</p>
+            <p align="center" width="100%">
+            <img width="80%" src="/survey/SFE_Leggett/survey1.png" alt="input1">
+            </p>
         - Longitudinal profile survey
-<!---![Figure 2.](/survey/SFE_Leggett/survey2.png)-->
-<p align="center" width="100%">
-<img width="60%" src="/survey/SFE_Leggett/survey2.png" alt="input2">
-</p>
+            <!---![Figure 2.](/survey/SFE_Leggett/survey2.png)-->
+            <p align="center" width="100%">
+            <img width="60%" src="/survey/SFE_Leggett/survey2.png" alt="input2">
+            </p>
         - Additional riffle crests and pool troughs transect survey
-<!---![Figure 3.](/survey/SFE_Leggett/survey3.png)-->
-<p align="center" width="100%">
-<img width="80%" src="/survey/SFE_Leggett/survey3.png" alt="input3">
-</p>
+            <!---![Figure 3.](/survey/SFE_Leggett/survey3.png)-->
+            <p align="center" width="100%">
+            <img width="80%" src="/survey/SFE_Leggett/survey3.png" alt="input3">
+            </p>
 - Output (/output/SFE_Leggett)
     - X-Y contour plot (before and after transformation, XY_before_transformation.png and XY.png)
         - Note that the transformation was done to make the bankline symmetric
-<!---![Figure 4. X-Y contour plot, before transformation]( /output/SFE_Leggett/XY_before_transformation.png)-->
-<p align="center" width="100%">
-<img width="60%" src="/output/SFE_Leggett/XY_before_transformation.png" alt="output1">
-</p>
-<!---![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)-->
-<p align="center" width="100%">
-<img width="60%" src="/output/SFE_Leggett/XY.png" alt="output2">
-</p>
+            <!---![Figure 4. X-Y contour plot, before transformation]( /output/SFE_Leggett/XY_before_transformation.png)-->
+            <p align="center" width="100%">
+            <img width="60%" src="/output/SFE_Leggett/XY_before_transformation.png" alt="output1">
+            </p>
+            <!---![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)-->
+            <p align="center" width="100%">
+            <img width="60%" src="/output/SFE_Leggett/XY.png" alt="output2">
+            </p>
     - X-Y and X-Z interpolated contour plot 
-<!---![Figure 6. X-Y and X-Z interpolated contour plot](/output/SFE_Leggett/XYZ_contours.png)-->
-<p align="center" width="100%">
-<img width="60%" src="/output/SFE_Leggett/XYZ_contours.png" alt="output3">
-</p>
+            <!---![Figure 6. X-Y and X-Z interpolated contour plot](/output/SFE_Leggett/XYZ_contours.png)-->
+            <p align="center" width="100%">
+            <img width="60%" src="/output/SFE_Leggett/XYZ_contours.png" alt="output3">
+            </p>
     - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
     - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
@@ -68,32 +67,32 @@ Here, we present two examples using different types of XS survey data to demonst
 - Input (/survey/M1)
     - Field survey data sheet (SFE_Leggett.xlsx)
         - Point shape file for topography (M1.shp)
-<!-- ![Figure 11.](/survey/M1/M1.png) -->
-<p align="center" width="100%">
-<img width="80%" src="/survey/M1/M1.png" alt="input2">
-</p>
+            <!-- ![Figure 11.](/survey/M1/M1.png) -->
+            <p align="center" width="100%">
+            <img width="80%" src="/survey/M1/M1.png" alt="input2">
+            </p>
         - Point shape file water surface elevation for baseflow (M1_base.shp)
-<!-- ![Figure 12.](/survey/M1/M1_base.png) -->
-<p align="center" width="100%">
-<img width="80%" src="/survey/M1/M1_base.png" alt="input2">
-</p>
+            <!-- ![Figure 12.](/survey/M1/M1_base.png) -->
+            <p align="center" width="100%">
+            <img width="80%" src="/survey/M1/M1_base.png" alt="input2">
+            </p>
 - Output (/output/M1)
     - Cross-section bed and water surface profile for width extraction
-<!--- ![Figure 13.](/output/M1/XS/x_0.png) -->
-<p align="center" width="100%">
-<img width="60%" src="/survey/M1/M1_base.png" alt="output1">
-</p>
+        <!--- ![Figure 13.](/output/M1/XS/x_0.png) -->
+        <p align="center" width="100%">
+        <img width="60%" src="/survey/M1/M1_base.png" alt="output1">
+        </p>
     - X-Y contour plot (XY.png)
         - Note that the transformation was not needed as the exact X, Y, Z coordinates were surveyed
-<!--- ![Figure 14.](/output/M1/XY.png) -->
-<p align="center" width="100%">
-<img width="60%" src="/output/M1/XY.png" alt="output2">
-</p>
+        <!--- ![Figure 14.](/output/M1/XY.png) -->
+        <p align="center" width="100%">
+        <img width="60%" src="/output/M1/XY.png" alt="output2">
+        </p>
     - X-Y and X-Z interpolated contour plot
-<!--- ![Figure 15.](/output/M1/XYZ_contours.png)-->
-<p align="center" width="100%">
-<img width="60%" src="/output/M1/XYZ_contours.png" alt="output3">
-</p>
+        <!--- ![Figure 15.](/output/M1/XYZ_contours.png)-->
+        <p align="center" width="100%">
+        <img width="60%" src="/output/M1/XYZ_contours.png" alt="output3">
+        </p>
     - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
     - Interpolated contour series (M1_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
