@@ -28,16 +28,16 @@ Here, we present two examples using different types of XS survey data to demonst
 
 - Input
     - Field survey data sheet (/survey/SFE_Leggett/SFE_Leggett.xlsx)
-![Figure 1. Equal-space transect survey (/survey/SFE_Leggett/survey1.png)
-![Figure 2. Longitudinal profile (/survey/SFE_Leggett/survey2.png)
-![Figure 3. Additional riffle crests and pool troughs transect survey (/survey/SFE_Leggett/survey3.png)
+![Figure 1. Equal-space transect survey](/survey/SFE_Leggett/survey1.png)
+![Figure 2. Longitudinal profile](/survey/SFE_Leggett/survey2.png)
+![Figure 3. Additional riffle crests and pool troughs transect survey](/survey/SFE_Leggett/survey3.png)
 - Output
     - X-Y contour plot (before and after transformation, /output/SFE_Leggett/XY_before_transformation.png and XY.png)
-![Figure 4. X-Y contour plot, before transformation (/output/SFE_Leggett/XY_before_transformation.png) 
-![Figure 5. X-Y contour plot, after transformation (/output/SFE_Leggett/XY.png)
+![Figure 4. X-Y contour plot, before transformation](/output/SFE_Leggett/XY_before_transformation.png) 
+![Figure 5. X-Y contour plot, after transformation](/output/SFE_Leggett/XY.png)
     - X-Y and X-Z interpolated contour plot 
-![Figure 6. X-Y and X-Z interpolated contour plot  (/output/SFE_Leggett/XYZ_contours.png)
-    - Channel attributes of RiverSTICH channel (/output/SFE_Leggett/channel_attributes.xlsx)
+![Figure 6. X-Y and X-Z interpolated contour plot](/output/SFE_Leggett/XYZ_contours.png)
+    - A channel attribute table of RiverSTICH channel (/output/SFE_Leggett/channel_attributes.xlsx)
     - Interpolated contour series, which will be used for RiverBuilder channel generation (/output/SFE_Leggett/SFE_Leggett_RB_metrics.xlsx)
 
 # <!-- ![output3](/codes/SFE_Leggett_hand_param_calc/HAND_BM/SRCs_extended.png) -->
