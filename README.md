@@ -54,7 +54,7 @@ Here, we present two examples using different types of XS survey data to demonst
 ![Figure 12.](/survey/M1/M1_base.png)
 - Output (/output/M1)
     - Cross-section bed and water surface profile for width extraction
-![Figure 13.](/survey/M1/XS/x_0.png)
+![Figure 13.](/output/M1/XS/x_0.png)
     - X-Y contour plot (XY.png)
 ![Figure 14.](/output/M1/XY.png)
     - X-Y and X-Z interpolated contour plot 
