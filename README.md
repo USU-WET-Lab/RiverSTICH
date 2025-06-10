@@ -56,9 +56,6 @@ Here, we present two examples using different types of XS survey data to demonst
 ![Figure 12.](/output/M1/XY.png)
     - X-Y and X-Z interpolated contour plot 
 ![Figure 13.](/output/M1/XYZ_contours.png)
-<p align="center" width="100%">
-<img width="50%" src="/output/M1/XYZ_contours.png" alt="output13">
-</p>
     - A channel attribute table of RiverSTICH channel (channel_attributes.xlsx)
     - Interpolated contour series (M1_RB_metrics.xlsx)
         - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
