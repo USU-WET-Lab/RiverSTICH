@@ -43,8 +43,8 @@ Here, we present two examples using different types of XS survey data to demonst
             <img width="80%" src="/survey/SFE_Leggett/survey3.png" alt="input3">
             </p>
 - Output (/output/SFE_Leggett)
-    - X-Y contour plot (before and after transformation, XY_before_transformation.png and XY.png)
-        - Note that the transformation was done to make the bankline symmetric
+    - X-Y contour plot (before and after transformation)
+        - Note that the transformation was done to make the left and right bank margins symmetric (Black dots: thalweg, Blue dots: left and right bank margins)
             <!---![Figure 4. X-Y contour plot, before transformation]( /output/SFE_Leggett/XY_before_transformation.png)-->
             <p align="center" width="100%">
             <img width="60%" src="/output/SFE_Leggett/XY_before_transformation.png" alt="output1">
