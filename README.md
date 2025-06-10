@@ -4,7 +4,7 @@ _River-STICH_ (**S**urvey **T**ransect **I**nterpolation to reconstruct 3D **Ch*
 
 Updated on 6/10/2025
 
-RiverSTICH converts traditional transect-based survey data into descriptive reach-scale attributes and variability function parameters that can then be used by [RiverBuilder](https://github.com/Pasternack-Lab/RiverBuilder) to construct a modular 3D synthetic river channel 
+RiverSTICH converts traditional transect-based survey data into descriptive reach-scale attributes and variability functions and parameters that can then be used by [RiverBuilder](https://github.com/Pasternack-Lab/RiverBuilder) to construct a modular 3D synthetic river channel 
 
 
 <!-- GETTING STARTED -->
