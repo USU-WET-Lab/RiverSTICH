@@ -60,8 +60,8 @@ Here, we present two examples using different types of XS survey data to demonst
             </p>
     - A channel attribute table of RiverSTICH channel, including reach-average bankfull depth, bed slope, and bankfull water surface elevation slope (channel_attributes.xlsx)
     - Interpolated contour series (SFE_Leggett_RB_metrics.xlsx)
-        - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation.
-
+        - These geomorphic variability functions (GVFs) will be used for RiverBuilder channel generation (see [a workflow for generating a RB channel with custom GVFs](https://github.com/Pasternack-Lab/RiverBuilder/edit/master/examples_custom/README.md).
+          
 #### Example 2. X, Y, Z topographic survey to RiverSTICH (main_M1.py)
 
 - Input (/survey/M1)
@@ -114,12 +114,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
 Anzy Lee anzy.lee@usu.edu
-
-GitHub repository: [https://github.com/USU-WET-Lab/RiverSTICH](https://github.com/USU-WET-Lab/RiverSTICH)
-
-
+<!-- Links -->
+## Links
+- RiverSTICH GitHub repository: [https://github.com/USU-WET-Lab/RiverSTICH](https://github.com/USU-WET-Lab/RiverSTICH)
+- River Builder GitHub repository: [https://github.com/Pasternack-Lab/RiverBuilder](https://github.com/Pasternack-Lab/RiverBuilder)
 <!-- ACKNOWLEDGMENTS 
 ## Acknowledgments
 
